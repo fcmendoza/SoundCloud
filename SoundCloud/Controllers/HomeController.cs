@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SoundCloud.Models;
+using SoundCloud.DataAccess.Repositories;
 
 namespace SoundCloud.Controllers
 {
@@ -13,13 +14,7 @@ namespace SoundCloud.Controllers
         {
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
-            List<Song> songs = new List<Song>() { 
-                new Song() { ID = 1, Title = "Put a Light On", ArtistName = "Generationals", AlbumName = "Album 1", Genre = "Rock", Year = 2013, FileName = @"C:\Music\LoremIpsum2.mp3" },
-                new Song() { ID = 2, Title = "Pretend You Love Me", ArtistName = "Generationals", AlbumName = "Album 1", Genre = "Rock", Year = 2013, FileName = @"C:\Music\LoremIpsum2.mp3" },
-                new Song() { ID = 3, Title = "Beat Rolls On", ArtistName = "Generationals", AlbumName = "Album 1", Genre = "Rock", Year = 2013, FileName = @"C:\Music\LoremIpsum2.mp3" },
-                new Song() { ID = 4, Title = "Your Enemies Are My Enemies", ArtistName = "Generationals", AlbumName = "Album 1", Genre = "Rock", Year = 2013, FileName = @"C:\Music\LoremIpsum2.mp3" },
-                new Song() { ID = 5, Title = "Come Togethe", ArtistName = "The Beatles", AlbumName = "Greatest Hists", Genre = "Pop", Year = 1970, FileName = @"C:\Music\LoremIpsum2.mp3" }
-            };
+            List<Song> songs = _repo.GetSongs();
 
             return View(songs);
         }
@@ -42,7 +37,23 @@ namespace SoundCloud.Controllers
         {
             ViewBag.Message = "This is the Top 5.";
 
+            List<Song> songs = _repo.GetTop5();
+
+            return View(songs);
+        }
+
+        public ActionResult Create()
+        {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Create(Song song)
+        {
+            _repo.SaveSong(song);
+            return RedirectToAction("Index");
+        }
+
+        private SongRepository _repo = new SongRepository();
     }
 }

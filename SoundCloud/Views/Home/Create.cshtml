@@ -1,0 +1,75 @@
+﻿@model SoundCloud.Models.Song
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>New Song</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Song</legend>
+
+        <div class="editor-label">
+            <label for="Title">Title</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+
+        <div class="editor-label">
+            <label for="ArtistName">Artist</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ArtistName)
+            @Html.ValidationMessageFor(model => model.ArtistName)
+        </div>
+
+        <div class="editor-label">
+            <label for="Genre">Genre</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Genre)
+            @Html.ValidationMessageFor(model => model.Genre)
+        </div>
+
+        <div class="editor-label">
+            <label for="Year">Year</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Year)
+            @Html.ValidationMessageFor(model => model.Year)
+        </div>
+
+        <div class="editor-label">
+            <label for="AlbumName">Album</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AlbumName)
+            @Html.ValidationMessageFor(model => model.AlbumName)
+        </div>
+
+        <div class="editor-label">
+            <label for="FileName">File Location</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FileName)
+            @Html.ValidationMessageFor(model => model.FileName)
+        </div>
+
+        <p>
+            <input type="submit" value="Create Song" />
+        </p>
+    </fieldset>
+}
+
+@*<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
