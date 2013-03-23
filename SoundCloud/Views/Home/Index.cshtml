@@ -1,0 +1,35 @@
+﻿@model List<SoundCloud.Models.Song>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+            <p>
+                To learn more about ASP.NET MVC visit
+                <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
+                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET MVC.
+                If you have any questions about ASP.NET MVC visit
+                <a href="http://forums.asp.net/1146.aspx/1?MVC" title="ASP.NET MVC Forum">our forums</a>.
+            </p>
+        </div>
+    </section>
+}
+<h3>We suggest the following:</h3>
+<ol class="round">
+    @foreach (var song in Model) { 
+        <li class="one">
+            <h5>@song.Title</h5>
+            @song.Genre - @song.AlbumName - @song.Year
+
+            <a href="http://go.microsoft.com/fwlink/?LinkId=245151">@song.ArtistName</a>
+        </li>
+    }
+
+    
+</ol>
