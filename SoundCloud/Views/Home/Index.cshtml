@@ -24,7 +24,7 @@
 <ol class="round">
     @foreach (var song in Model) { 
         <li class="one">
-            <h5>@song.Title</h5>
+            <h5><a href="~/Home/Edit/@song.ID">@song.Title</a></h5> 
             @song.Genre - @song.AlbumName - @song.Year
 
             <a href="http://go.microsoft.com/fwlink/?LinkId=245151">@song.ArtistName</a>

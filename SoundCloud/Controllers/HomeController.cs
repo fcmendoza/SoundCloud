@@ -54,6 +54,27 @@ namespace SoundCloud.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Edit(int id) {
+            Song song = _repo.GetSong(id);
+
+            bool songExists = song != null && song.ID > 0;
+            
+            if (songExists) {
+                return View(song);
+            }
+            else {
+                return View("NotFound");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Song song) {
+            // Save song
+            // return to Home/Index (main page with the song list)
+            _repo.UpdateSong(song);
+            return RedirectToAction("Index");
+        }
+
         private SongRepository _repo = new SongRepository();
     }
 }

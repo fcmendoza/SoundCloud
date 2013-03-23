@@ -22,6 +22,16 @@ namespace SoundCloud.DataAccess.Repositories
             _db.CreateSong(song.Title, song.ArtistName, song.Genre, song.AlbumName, song.Year, song.FileName).Execute();
         }
 
+        public Song GetSong(int id) {
+            List<Song> songs = _db.GetSong(id).ExecuteTypedList<Song>();
+            Song song = songs.FirstOrDefault();
+            return song;
+        }
+
+        public void UpdateSong(Song song) {
+            _db.UpdateSong(song.ID, song.Title, song.ArtistName, song.Genre, song.AlbumName, song.Year, song.FileName).Execute();
+        }
+
         private SoundCloudDB _db = new SoundCloudDB();
     }
 }
